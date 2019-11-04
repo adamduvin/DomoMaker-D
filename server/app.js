@@ -29,7 +29,7 @@ let redisURL = {
 
 let redisPASS = '7zeqTUceSfgDkRoZ3FrZQtGWUP3gqh6g';
 
-if(process.env.REDISCLOUD_URL){
+if (process.env.REDISCLOUD_URL) {
   redisURL = url.parse(process.env.REDISCLOUD_URL);
   redisPASS = redisURL.auth.split(':')[1];
 }
@@ -65,7 +65,7 @@ app.use(cookieParser());
 
 app.use(csrf());
 app.use((err, req, res, next) => {
-  if(err.code !== 'EBADCSRFTOKEN'){
+  if (err.code !== 'EBADCSRFTOKEN') {
     return next(err);
   }
 

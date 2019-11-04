@@ -22,7 +22,7 @@ var handleSignup = function handleSignup(e) {
 
     $("#domoMessage").animate({ width: 'hide' }, 350);
 
-    if ($("#user").val() == '' || $("#pass").val() == '' || $("#pass2") == '') {
+    if ($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == '') {
         handleError("RAWR! All fields are required");
         return false;
     }
@@ -32,7 +32,7 @@ var handleSignup = function handleSignup(e) {
         return false;
     }
 
-    sendAjax('POST', $("signupForm").attr("action"), $("#signupForm").serialize(), redirect);
+    sendAjax('POST', $("#signupForm").attr("action"), $("#signupForm").serialize(), redirect);
 
     return false;
 };
@@ -91,7 +91,7 @@ var SignupWindow = function SignupWindow(props) {
             { htmlFor: "pass2" },
             "Password: "
         ),
-        React.createElement("input", { id: "pass2", type: "password", name: "pass2", placeholder: "password" }),
+        React.createElement("input", { id: "pass2", type: "password", name: "pass2", placeholder: "retype password" }),
         React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
         React.createElement("input", { className: "formSubmit", type: "submit", value: "Sign Up" })
     );
@@ -142,7 +142,7 @@ var handleError = function handleError(message) {
 
 var redirect = function redirect(response) {
     $("#domoMessage").animate({ width: 'hide' }, 350);
-    window.location = response.dedirect;
+    window.location = response.redirect;
 };
 
 var sendAjax = function sendAjax(type, action, data, success) {
